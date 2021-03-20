@@ -1,0 +1,62 @@
+# design a quiz system
+#
+# fun req>>>>
+#
+# 1. I have to create a quiz
+# 2.list all the quizes
+# 3.answer the quiz
+#
+# def art_quiz
+from Loanapp.connections.connections import get_dbconnection
+
+def create_quiz(user_id,eng,quiz_id):
+   question = {'art':['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'],'history':['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'],
+                    'maths':['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10']}
+   quiz_question = question.get(quiz_id,None)
+   eng.execute("insert into quiz_questions (questions) values('{}') where quiz_id= '{}'".format(quiz_question,quiz_id))
+
+
+
+
+def art_quiz(user_id):
+   res_questions = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10']
+   return res_questions
+
+def science_quiz(user_id):
+   res_questions = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10']
+   return res_questions
+
+
+def hostory_quiz(user_id,eng):
+   res_data = eng.execute("select questions from quiz_questions where user_id = '{}'".format(user_id))
+   res_questions = res_data.questions
+   return res_questions
+
+def input_method():
+   eng = get_dbconnection('wr')
+   print("enter user details")
+   user_id = input()
+   quiz_id = input()
+   if quiz_id == 'hostory_quiz':
+      return hostory_quiz(user_id, hostory_quiz)
+   # elif qui
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    input_method()
+
+
+
+
+
+
+
+
+
+
+
